@@ -47,5 +47,20 @@ namespace gregslist_mysql
         throw new System.Exception("Something is wrong mayne");
       }
     }
+    internal void Update(Car original)
+    {
+      string sql = @"
+      UPDATE cars
+      SET
+        price = @Price,
+        make = @Make,
+        model = @Model,
+        modelYear = @ModelYear,
+        description = @Description,
+        imgurl = @ImgUrl
+      WHERE id = @Id;
+      ";
+      _db.Execute(sql, original);
+    }
   }
 }

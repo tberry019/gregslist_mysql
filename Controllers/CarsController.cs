@@ -71,20 +71,20 @@ namespace gregsList_csharp.Controllers
         return BadRequest(e.Message);
       }
     }
-    // [HttpPut("{id}")]
-    // public ActionResult<Car> Edit([FromBody] Car editedCar, string id)
-    // {
-    //   try
-    //   {
-    //     editedCar.Id = id;
-    //     Car updatedCar = _cs.Edit(editedCar, id);
-    //     return Ok(updatedCar);
-    //   }
-    //   catch (System.Exception e)
-    //   {
+    [HttpPut("{id}")]
+    public ActionResult<Car> Edit([FromBody] Car editedCar, int id)
+    {
+      try
+      {
+        editedCar.Id = id;
+        Car updatedCar = _cs.Update(editedCar);
+        return Ok(updatedCar);
+      }
+      catch (System.Exception e)
+      {
 
-    //     return BadRequest(e.Message);
-    //   }
-    // }
+        return BadRequest(e.Message);
+      }
+    }
   }
 }
