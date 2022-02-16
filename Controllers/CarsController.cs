@@ -29,54 +29,55 @@ namespace gregsList_csharp.Controllers
         return BadRequest(e.Message);
       }
     }
-    // [HttpGet("{carId}")]
+    [HttpGet("{id}")]
 
-    // public ActionResult<Car> GetById(string carId)
+    public ActionResult<Car> GetById(int id)
+    {
+      try
+      {
+        Car foundCar = _cs.GetById(id);
+        return Ok(foundCar);
+      }
+      catch (System.Exception e)
+      {
+
+        return BadRequest(e.Message);
+      }
+    }
+    [HttpPost]
+    public ActionResult<Car> Create([FromBody] Car newCar)
+    {
+      try
+      {
+        return Ok(_cs.Create(newCar));
+      }
+      catch (System.Exception e)
+      {
+
+        return BadRequest(e.Message);
+      }
+    }
+    [HttpDelete("{id}")]
+    public ActionResult<Car> Delete(int id)
+    {
+      try
+      {
+        _cs.Delete(id);
+        return Ok("deleted");
+      }
+      catch (System.Exception e)
+      {
+
+        return BadRequest(e.Message);
+      }
+    }
+    // [HttpPut("{id}")]
+    // public ActionResult<Car> Edit([FromBody] Car editedCar, string id)
     // {
     //   try
     //   {
-    //     Car foundCar = _cs.GetById(carId);
-    //     return Ok(foundCar);
-    //   }
-    //   catch (System.Exception e)
-    //   {
-
-    //     return BadRequest(e.Message);
-    //   }
-    // }
-    // [HttpPost]
-    // public ActionResult<Car> Create([FromBody] Car newCar)
-    // {
-    //   try
-    //   {
-    //     return Ok(_cs.Create(newCar));
-    //   }
-    //   catch (System.Exception e)
-    //   {
-
-    //     return BadRequest(e.Message);
-    //   }
-    // }
-    // [HttpDelete("{carId}")]
-    // public ActionResult<Car> Delete(string carId)
-    // {
-    //   try
-    //   {
-    //     return Ok(_cs.Delete(carId));
-    //   }
-    //   catch (System.Exception e)
-    //   {
-
-    //     return BadRequest(e.Message);
-    //   }
-    // }
-    // [HttpPut("{carId}")]
-    // public ActionResult<Car> Edit([FromBody] Car editedCar, string carId)
-    // {
-    //   try
-    //   {
-    //     editedCar.Id = carId;
-    //     Car updatedCar = _cs.Edit(editedCar, carId);
+    //     editedCar.Id = id;
+    //     Car updatedCar = _cs.Edit(editedCar, id);
     //     return Ok(updatedCar);
     //   }
     //   catch (System.Exception e)
